@@ -1,0 +1,29 @@
+---
+- name: Create a temporary directory for build the container image
+  register: temp_file
+  tempfile:
+    path: /tmp
+    state: directory
+    prefix: dockerbuild-
+
+- name: Copy the Dockerfile to the remote temporary directory
+  copy:
+    src: '{{ role_path }}/files/Dockerfile'
+    dest: '{{ temp_file.path }}'
+
+- name: Download the application artifact to the build directory
+  get_url:
+    url: '{{ app_artifact_url }}'
+    dest: '{{ temp_file.path }}/app.jar'
+
+- name: Build the application image
+  docker_image:
+    path: '{{ temp_file.path }}'
+    name: myapp
+    buildargs:
+      JAR_FILE: app.jar
+
+- name: Remove the temporary build directory
+  file:
+    path: '{{ temp_file.path }}'
+    state: absent

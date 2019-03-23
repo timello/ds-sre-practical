@@ -1,2 +1,4 @@
 *.retry
+*.swp
 .ansible_vault
+inventory/test

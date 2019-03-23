@@ -1,1 +1,30 @@
 ---
+- name: Install prerequesite packages
+  apt: name={{ item }} state=present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    - python-pip
+
+- name: Install docker-py required for building Dockerfile with Ansible
+  pip: name=docker-py
+
+- name: Install the required apt key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/debian/ {{ ansible_lsb.codename}} stable
+    codename: '{{ ansible_lsb.codename}}'
+    state: present
+
+- name: Install Docker on the host system
+  apt: name=docker-ce state=present
+
+- name: Ensure that the service is enabled and running
+  systemd: name=docker state=started enabled=yes

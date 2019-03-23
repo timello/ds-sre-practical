@@ -1,2 +1,0 @@
-[testhost]
-35.237.206.93 ansible_ssh_user=timello become=yes
