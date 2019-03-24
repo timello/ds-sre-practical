@@ -1,0 +1,11 @@
+[dbhost]
+testserver
+[apphost]
+testserver
+[dockerhost]
+testserver
+
+[test:children]
+dbhost
+apphost
+dockerhost

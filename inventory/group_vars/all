@@ -1,2 +1,1 @@
-docker_registry: localhost:5000
-docker_internal_network: internal_nw
+

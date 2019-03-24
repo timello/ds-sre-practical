@@ -1,4 +1,4 @@
 ---
-- hosts: '{{ host }}'
+- hosts: dockerhost
   roles:
     - docker

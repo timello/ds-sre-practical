@@ -8,4 +8,7 @@
     networks:
       - name: '{{ docker_internal_network }}'
     env:
-      POSTGRES_PASSWORD='{{ db_master_password }}'
+      POSTGRES_PASSWORD: '{{ postgres_password }}'
+      DB_NAME: '{{ db_name }}'
+      DB_USER: '{{ db_user }}'
+      DB_PASSWORD: '{{ db_password }}'

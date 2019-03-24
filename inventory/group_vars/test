@@ -1,0 +1,8 @@
+ansible_become: yes
+docker_registry: localhost:5000
+docker_internal_network: internal_nw
+
+postgres_password: mysecret
+db_name: entries
+db_user: entries
+db_password: entries
