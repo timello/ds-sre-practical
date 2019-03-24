@@ -1,5 +1,5 @@
 ---
-- hosts: testhost
+- hosts: dbhost
   tasks:
     - import_role:
         name: db

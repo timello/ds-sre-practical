@@ -8,7 +8,7 @@ ENV APP_HOME=/app-src
 RUN mkdir -p $APP_HOME
 RUN git clone https://github.com/jeduardo/springboot-demo-app.git $APP_HOME
 WORKDIR $APP_HOME/
-RUN mvn package
+RUN mvn package; mvn flyway:migrate
 
 FROM openjdk:8-jre-alpine
 WORKDIR /
