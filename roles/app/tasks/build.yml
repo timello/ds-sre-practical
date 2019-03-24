@@ -14,7 +14,11 @@
 - name: Build the application docker image
   docker_image:
     path: '{{ temp_file.path }}'
-    name: demo-app
+    name: '{{ app_container_name }}'
+    repository: '{{ docker_registry }}/{{ app_container_name }}:latest'
+    push: yes
+    state: present
+    nocache: yes
 
 - name: Remove the temporary build directory
   file:

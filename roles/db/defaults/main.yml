@@ -1,0 +1,4 @@
+---
+db_container_name: "db"
+db_docker_image: "postgres:9.6-alpine"
+db_master_password: mysecretpassword

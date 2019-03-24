@@ -28,3 +28,15 @@
 
 - name: Ensure that the service is enabled and running
   systemd: name=docker state=started enabled=yes
+
+- name: Create docker internal network
+  docker_network:
+    name: internal_nw
+
+- name: Create local docker registry
+  docker_container:
+    name: registry
+    image: registry:2
+    ports:
+      5000:5000
+    state: started

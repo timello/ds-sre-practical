@@ -1,5 +1,0 @@
----
-- hosts: testhost
-  tasks:
-    - import_role:
-        name: app

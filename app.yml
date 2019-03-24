@@ -1,0 +1,10 @@
+---
+- hosts: testhost
+  tasks:
+    - import_role:
+        name: app
+        tasks_from: build.yml
+
+    - import_role:
+        name: app
+        tasks_from: deploy.yml

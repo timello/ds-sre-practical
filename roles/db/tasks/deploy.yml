@@ -1,0 +1,11 @@
+---
+- name: Run the database container
+  register: docker_db_meta
+  docker_container:
+    name: '{{ db_container_name }}'
+    image: '{{ docker_registry }}/{{ db_container_name }}:latest'
+    state: started
+    networks:
+      - name: '{{ docker_internal_network }}'
+    env:
+      POSTGRES_PASSWORD='{{ db_master_password }}'

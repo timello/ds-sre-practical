@@ -1,0 +1,27 @@
+---
+- name: Create a temporary directory for building the container image
+  register: temp_file
+  tempfile:
+    path: /tmp
+    state: directory
+    prefix: dbdockerbuild-
+
+- name: Copy the Dockerfile and the initdb script to the remote tempfile directory
+  copy:
+    src: '{{ role_path }}/files/{{ item }}'
+    dest: '{{ temp_file.path }}'
+  loop:
+    - Dockerfile
+    - 01-initdb.sh
+
+- name: Build the database docker image
+  docker_image:
+    path: '{{ temp_file.path }}'
+    name: '{{ db_container_name }}'
+    repository: '{{ docker_registry }}/{{ db_container_name }}:latest'
+    push: yes
+    state: present
+    nocache: yes
+
+- name: Remove the temporary build directory
+  file: path={{ temp_file.path }} state=absent
