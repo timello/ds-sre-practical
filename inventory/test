@@ -4,8 +4,11 @@ testserver
 testserver
 [dockerhost]
 testserver
+[haproxyhost]
+testserver
 
 [test:children]
 dbhost
 apphost
 dockerhost
+haproxyhost

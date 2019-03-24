@@ -1,0 +1,11 @@
+---
+- name: Run the haproxy container
+  docker_container:
+    name: '{{ ha_container_name }}'
+    image: '{{ docker_registry}}/{{ ha_image_name }}:latest'
+    state: started
+    recreate: yes
+    ports:
+      - 80:80
+    networks:
+      - name: '{{ docker_internal_network }}'

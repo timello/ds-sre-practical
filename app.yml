@@ -4,7 +4,24 @@
     - import_role:
         name: app
         tasks_from: build.yml
+      vars:
+        app_image_name: app
+        db_container_name: db
+
+    #TODO(timello): Spawn asynchronous workers
 
     - import_role:
         name: app
         tasks_from: deploy.yml
+      vars:
+        app_image_name: app
+        db_container_name: db
+        app_container_name: app-worker-1
+
+    - import_role:
+        name: app
+        tasks_from: deploy.yml
+      vars:
+        app_image_name: app
+        db_container_name: db
+        app_container_name: app-worker-2

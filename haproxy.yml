@@ -1,0 +1,15 @@
+---
+- hosts: haproxyhost
+  tasks:
+    - import_role:
+        name: haproxy
+        tasks_from: build.yml
+      vars:
+        ha_image_name: haproxy
+
+    - import_role:
+        name: haproxy
+        tasks_from: deploy.yml
+      vars:
+        ha_container_name: haproxy
+        ha_image_name: haproxy

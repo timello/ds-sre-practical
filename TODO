@@ -1,0 +1,2 @@
+#TODO
+1. Ansible 2.7 does not have the 'network' parameter in the docker_image module. If we user-defined bridge to isolate the db container, we are not able to run the database migration using flyway:migrate during the app docker build stage unless we expose the port and use the DB IP instead. #https://github.com/ansible/ansible/issues/21433

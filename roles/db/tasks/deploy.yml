@@ -3,7 +3,7 @@
   register: docker_db_meta
   docker_container:
     name: '{{ db_container_name }}'
-    image: '{{ docker_registry }}/{{ db_container_name }}:latest'
+    image: '{{ docker_registry }}/{{ db_image_name }}:latest'
     state: started
     networks:
       - name: '{{ docker_internal_network }}'

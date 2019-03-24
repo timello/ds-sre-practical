@@ -4,18 +4,21 @@
   tempfile:
     path: /tmp
     state: directory
-    prefix: dockerbuild-
+    prefix: hadockerbuild-
 
 - name: Copy the Dockerfile to the remote temporary directory
   copy:
-    src: '{{ role_path }}/files/Dockerfile'
+    src: '{{ role_path }}/files/{{ item }}'
     dest: '{{ temp_file.path }}'
+  loop:
+    - Dockerfile
+    - haproxy.cfg
 
-- name: Build the application docker image
+- name: Build the haproxy docker image
   docker_image:
     path: '{{ temp_file.path }}'
-    name: '{{ app_image_name }}'
-    repository: '{{ docker_registry }}/{{ app_image_name }}:latest'
+    name: '{{ ha_image_name }}'
+    repository: '{{ docker_registry }}/{{ ha_image_name }}:latest'
     push: yes
     state: present
     nocache: yes

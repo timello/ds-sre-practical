@@ -17,8 +17,8 @@
 - name: Build the database docker image
   docker_image:
     path: '{{ temp_file.path }}'
-    name: '{{ db_container_name }}'
-    repository: '{{ docker_registry }}/{{ db_container_name }}:latest'
+    name: '{{ db_image_name }}'
+    repository: '{{ docker_registry }}/{{ db_image_name }}:latest'
     push: yes
     state: present
     nocache: yes

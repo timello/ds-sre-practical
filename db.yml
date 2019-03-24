@@ -4,7 +4,12 @@
     - import_role:
         name: db
         tasks_from: build.yml
+      vars:
+        db_image_name: db
 
     - import_role:
         name: db
         tasks_from: deploy.yml
+      vars:
+        db_container_name: db
+        db_image_name: db
