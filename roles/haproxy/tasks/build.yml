@@ -22,6 +22,7 @@
     push: yes
     state: present
     nocache: yes
+    force: yes
 
 - name: Remove the temporary build directory
   file:
