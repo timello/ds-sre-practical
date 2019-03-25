@@ -12,3 +12,6 @@ dbhost
 apphost
 dockerhost
 haproxyhost
+
+[dnsupdate]
+localhost

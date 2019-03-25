@@ -1,0 +1,31 @@
+---
+- name: Handy playbook for updating the DNS record in Rackspace
+  hosts: dnsupdate
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Get the token
+      register: token_req
+      uri:
+        url: https://identity.api.rackspacecloud.com/v2.0/tokens
+        method: POST
+        body_format: json
+        body:
+          auth:
+            RAX-KSKEY:apiKeyCredentials:
+              username: '{{ dns_api_username }}'
+              apiKey: '{{ dns_api_key }}'
+
+    - name: Update the DNS entry
+      register: update_req
+      uri:
+        url: '{{ update_record_url }}'
+        method: PUT
+        status_code: 202
+        body_format: json
+        body:
+          name: '{{ A_record }}'
+          data: '{{ A_ip }}'
+          ttl: 300
+        headers:
+          X-Auth-Token: '{{ token_req.json.access.token.id }}'
