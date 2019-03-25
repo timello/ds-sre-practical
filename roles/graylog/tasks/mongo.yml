@@ -1,0 +1,9 @@
+---
+- name: Run mongo container
+  docker_container:
+    name: mongo
+    image: mongo:3
+    state: started
+    recreate: yes
+    networks:
+      - name: '{{ docker_internal_network }}'

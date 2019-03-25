@@ -1,0 +1,14 @@
+---
+- name: Run graylog container
+  docker_container:
+    name: graylog
+    image: graylog/graylog:3.0
+    state: started
+    recreate: yes
+    ports:
+      - 12201:12201
+      - 1514:1514
+    networks:
+      - name: '{{ docker_internal_network }}'
+    env:
+      GRAYLOG_HTTP_EXTERNAL_URI: "https://dschallenge.tiagomello.com/monitoring/"

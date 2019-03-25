@@ -15,3 +15,6 @@ haproxyhost
 
 [dnsupdate]
 localhost
+
+[grayloghost]
+testserver

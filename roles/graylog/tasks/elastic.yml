@@ -1,0 +1,12 @@
+---
+- name: Run elastic container
+  docker_container:
+    name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.6.1
+    state: started
+    recreate: yes
+    networks:
+      - name: '{{ docker_internal_network }}'
+    env:
+      http.host: "0.0.0.0"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"

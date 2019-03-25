@@ -14,7 +14,7 @@
     - Dockerfile
     - haproxy.cfg
 
-- name: Copy the encrypt certificate file
+- name: Copy the encrypted certificate file
   copy:
     src: '{{ role_path }}/files/dschallenge.pem.vault'
     dest: '{{ temp_file.path }}/dschallenge.pem'

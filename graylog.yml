@@ -1,0 +1,14 @@
+---
+- hosts: grayloghost
+  tasks:
+    - import_role:
+        name: graylog
+        tasks_from: mongo.yml
+
+    - import_role:
+        name: graylog
+        tasks_from: elastic.yml
+
+    - import_role:
+        name: graylog
+        tasks_from: graylog.yml
