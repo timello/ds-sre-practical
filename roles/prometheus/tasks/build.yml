@@ -8,8 +8,11 @@
 
 - name: Copy the Dockerfile to the remote temporary directory
   copy:
-    src: '{{ role_path }}/files/Dockerfile'
+    src: '{{ role_path }}/files/{{ item }}'
     dest: '{{ temp_file.path }}'
+  loop:
+    - Dockerfile
+    - prometheus.yml
 
 - name: Build the Prometheus docker image
   docker_image:
