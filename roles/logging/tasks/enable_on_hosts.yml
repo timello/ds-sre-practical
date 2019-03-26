@@ -1,0 +1,7 @@
+---
+- name: Enable rsyslog to forward logs to Graylog
+  copy:
+    src: '{{ role_path }}/files/rsyslog-graylog.conf'
+    dest: /etc/rsyslog.d/50-rsyslog-graylog.conf
+  notify:
+    - restart rsyslog

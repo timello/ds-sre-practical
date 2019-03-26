@@ -26,8 +26,13 @@
 - name: Install Docker on the host system
   apt: name=docker-ce state=present
 
+- name: Copy docker daemon.json file (enable gelf driver)
+  copy:
+    src: '{{ role_path }}/files/daemon.json'
+    dest: /etc/docker/daemon.json
+
 - name: Ensure that the service is enabled and running
-  systemd: name=docker state=started enabled=yes
+  systemd: name=docker state=restarted enabled=yes
 
 - name: Create docker internal network
   docker_network:
@@ -40,3 +45,4 @@
     ports:
       5000:5000
     state: started
+    restart_policy: always

@@ -7,9 +7,11 @@
     recreate: yes
     ports:
       - 12201:12201
+      - 12201:12201/udp
       - 1514:1514
       - 5555:5555
     networks:
       - name: '{{ docker_internal_network }}'
     env:
       GRAYLOG_HTTP_EXTERNAL_URI: "https://dschallenge.tiagomello.com/monitoring/"
+    restart_policy: always

@@ -11,3 +11,4 @@
       APP_DATABASE_USER: '{{ db_user }}'
       APP_DATABASE_PASSWORD: '{{ db_password }}'
       APP_DATABASE_URL: "jdbc:postgresql://{{ db_container_name }}:{{ db_port }}/{{ db_name }}"
+    restart_policy: always

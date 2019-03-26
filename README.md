@@ -3,6 +3,9 @@
 The project aims to deploy a Spring Boot application in high availability model.
 All the steps will be done using Infrastructure as Code.
 
+### Features
+ * GELF drivers enabled on Docker hosts
+
 
 ### Notes
 

@@ -18,3 +18,6 @@ localhost
 
 [grayloghost]
 testserver
+
+[enablelogging]
+testserver

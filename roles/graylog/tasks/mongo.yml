@@ -7,3 +7,4 @@
     recreate: yes
     networks:
       - name: '{{ docker_internal_network }}'
+    restart_policy: always

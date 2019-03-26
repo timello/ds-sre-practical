@@ -1,0 +1,7 @@
+---
+- name: Enable pushing logs to Graylog on hosts
+  hosts: enablelogging
+  tasks:
+    - import_role:
+        name: logging
+        tasks_from: enable_on_hosts.yml
