@@ -5,3 +5,9 @@
     dest: /etc/rsyslog.d/50-rsyslog-graylog.conf
   notify:
     - restart rsyslog
+
+- name: Install Node Exporter for Prometheus
+  apt: name=prometheus-node-exporter state=present
+
+- name: Ensure the service above is enabled and running
+  systemd: name=prometheus-node-exporter state=restarted enabled=yes

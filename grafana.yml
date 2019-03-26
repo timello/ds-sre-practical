@@ -1,0 +1,7 @@
+---
+- name: Install Grafana
+  hosts: grafanahost
+  tasks:
+    - import_role:
+        name: grafana
+        tasks_from: deploy.yml

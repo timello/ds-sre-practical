@@ -41,3 +41,9 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     static_configs:      
       - targets: ['app-worker-2:8080']
+
+  - job_name: 'docker-host'
+
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100']

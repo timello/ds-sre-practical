@@ -7,3 +7,5 @@ db_name: entries
 db_user: entries
 db_password: entries
 db_port: 5432
+
+grafana_admin_password: mysecret

@@ -19,6 +19,9 @@ testserver
 [prometheushost]
 testserver
 
+[grafanahost]
+testserver
+
 [test:children]
 dbhost
 apphost
@@ -27,6 +30,7 @@ haproxyhost
 grayloghost
 enablelogging
 prometheushost
+grafanahost
 
 [dnsupdate]
 localhost

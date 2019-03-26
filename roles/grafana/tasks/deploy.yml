@@ -1,0 +1,11 @@
+---
+- name: Run the grafana container
+  docker_container:
+    name: grafana
+    image: grafana/grafana
+    state: started
+    recreate: yes
+    networks:
+      - name: '{{ docker_internal_network }}'
+    env:
+      GF_SECURITY_ADMIN_PASSWORD: '{{ grafana_admin_password }}'
