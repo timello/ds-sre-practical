@@ -1,5 +1,5 @@
 ---
-- name: sysctl entry required for elasticsearch: vm.max_map_count=262144
+- name: sysctl entry required for elasticsearch "vm.max_map_count=262144"
   sysctl:
     name: vm.max_map_count
     value: 262144
