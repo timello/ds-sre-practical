@@ -12,7 +12,11 @@
     dest: '{{ temp_file.path }}'
   loop:
     - Dockerfile
-    - prometheus.yml
+
+- name: Copy the prometheus.yml template
+  template:
+    src: prometheus.yml
+    dest: '{{ temp_file.path }}/prometheus.yml'
 
 - name: Build the Prometheus docker image
   docker_image:
