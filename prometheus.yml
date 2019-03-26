@@ -1,0 +1,11 @@
+---
+- name: Install Prometheus monitoring and alert toolkit
+  hosts: prometheushost
+  tasks:
+    - import_role:
+        name: prometheus
+        tasks_from: build.yml
+
+    - import_role:
+        name: prometheus
+        tasks_from: deploy.yml

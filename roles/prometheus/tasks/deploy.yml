@@ -1,0 +1,9 @@
+---
+- name: Run the prometheus container
+  docker_container:
+    name: prometheus
+    image: '{{ docker_registry}}/prometheus:latest'
+    state: started
+    recreate: yes
+    networks:
+      - name: '{{ docker_internal_network }}'

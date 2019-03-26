@@ -1,0 +1,26 @@
+---
+- name: Create a temporary directory for building the container image
+  register: temp_file
+  tempfile:
+    path: /tmp
+    state: directory
+    prefix: promdockerbuild-
+
+- name: Copy the Dockerfile to the remote temporary directory
+  copy:
+    src: '{{ role_path }}/files/Dockerfile'
+    dest: '{{ temp_file.path }}'
+
+- name: Build the Prometheus docker image
+  docker_image:
+    path: '{{ temp_file.path }}'
+    name: prometheus
+    repository: '{{ docker_registry }}/prometheus:latest'
+    push: yes
+    state: present
+    nocache: yes
+    force: yes
+
+- name: Remove the temporary build directory
+  file:
+    path: '{{ temp_file.path }}'

@@ -1,10 +1,22 @@
 [dbhost]
 testserver
+
 [apphost]
 testserver
+
 [dockerhost]
 testserver
+
 [haproxyhost]
+testserver
+
+[grayloghost]
+testserver
+
+[enablelogging]
+testserver
+
+[prometheushost]
 testserver
 
 [test:children]
@@ -12,12 +24,9 @@ dbhost
 apphost
 dockerhost
 haproxyhost
+grayloghost
+enablelogging
+prometheushost
 
 [dnsupdate]
 localhost
-
-[grayloghost]
-testserver
-
-[enablelogging]
-testserver
