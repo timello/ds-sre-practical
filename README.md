@@ -17,3 +17,4 @@ All the steps will be done using Infrastructure as Code.
 #### Load Balancer
  * The chosen strategy for https was to use SSL Termination for convenience.
  * Although the certificate is in the repository, it is encrypted using Ansible Vault and it is decrypted during the image build.
+ * All connections are blocked except those that belong to the whitelist. That's not the ideal solution. There are several ways to minimize anonymous/unwanted connections, such fine tuning the proxy based on the expected behavior (thresholds, max concurrent connections per source ip within a period of time, etc). There are also paid services that provides WAF/API Proxies. None of them will be bullet proof though.
