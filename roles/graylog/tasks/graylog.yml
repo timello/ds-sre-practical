@@ -14,4 +14,5 @@
       - name: '{{ docker_internal_network }}'
     env:
       GRAYLOG_HTTP_EXTERNAL_URI: "https://dschallenge.tiagomello.com/monitoring/"
+      GRAYLOG_ROOT_PASSWORD_SHA2: b09bef42896aa44f31601a8296071166d0f0198b2a9a9043ac7713bfa3a96b9e
     restart_policy: always

@@ -1,8 +1,45 @@
 ---
+- name: Create temporary directory for build the container image
+  register: temp_file
+  tempfile:
+    path: /tmp
+    state: directory
+    prefix: mongodbbuild-
+
+- name: Copy the Dockerfile to the remote temp directory
+  copy:
+    src: '{{ role_path }}/files/mongo-Dockerfile'
+    dest: '{{ temp_file.path }}/Dockerfile'
+
+- name: Copy the initdb script
+  copy:
+    src: '{{ role_path }}/files/01-init-mongodb.sh'
+    dest: '{{ temp_file.path }}'
+
+#TODO(timello): mongodb dump should live in another place other than repository
+- name: Copy and uncompress mongodb dump
+  unarchive:
+    src: '{{ role_path }}/files/mongodb.dump.tgz'
+    dest: '{{ temp_file.path }}/'
+
+- name: Build the mongodb docker image
+  docker_image:
+    path: '{{ temp_file.path }}'
+    name: mongo
+    repository: '{{ docker_registry }}/mongo:latest'
+    push: yes
+    state: present
+    nocache: yes
+    force: yes
+
+- name: remove the temporary build directory
+  file:
+    path: '{{ temp_file.path }}'
+
 - name: Run mongo container
   docker_container:
     name: mongo
-    image: mongo:3
+    image: '{{ docker_registry}}/mongo:latest'
     state: started
     recreate: yes
     networks:
