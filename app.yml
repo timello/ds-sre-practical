@@ -1,5 +1,6 @@
 ---
-- hosts: apphost
+- name: Build and deploy the application workers
+  hosts: apphost
   tasks:
     - import_role:
         name: app

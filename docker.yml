@@ -1,4 +1,5 @@
 ---
-- hosts: dockerhost
+- name: Install Docker and its requirements
+  hosts: dockerhost
   roles:
     - docker

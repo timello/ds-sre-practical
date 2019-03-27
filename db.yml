@@ -1,5 +1,6 @@
 ---
-- hosts: dbhost
+- name: Build and deploy the application database
+  hosts: dbhost
   tasks:
     - import_role:
         name: db

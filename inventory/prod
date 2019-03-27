@@ -1,28 +1,28 @@
 [dbhost]
-testserver
+dsserver
 
 [apphost]
-testserver
+dsserver
 
 [dockerhost]
-testserver
+dsserver
 
 [haproxyhost]
-testserver
+dsserver
 
 [grayloghost]
-testserver
+dsserver
 
 [enablelogging]
-testserver
+dsserver
 
 [prometheushost]
-testserver
+dsserver
 
 [grafanahost]
-testserver
+dsserver
 
-[test:children]
+[prod:children]
 dbhost
 apphost
 dockerhost

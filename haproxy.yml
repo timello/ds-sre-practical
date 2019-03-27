@@ -1,5 +1,6 @@
 ---
-- hosts: haproxyhost
+- name: Build and deploy HAProxy
+  hosts: haproxyhost
   tasks:
     - import_role:
         name: haproxy
