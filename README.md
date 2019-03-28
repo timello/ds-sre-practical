@@ -22,7 +22,6 @@ exchanged with the target server host and the following steps below:
 
  2. Save in the file inventory/group_vars/prod:
 
-        ansible_become: yes
         ansible_sudo_pass: my_sudo_password
         docker_registry: localhost:5000
         docker_internal_network: internal_nw
@@ -33,7 +32,15 @@ exchanged with the target server host and the following steps below:
         db_password: entries
         db_port: 5432
 
- 3. Run the command:
+ 3. The SSL certificate is encrypted using Ansible Vault. In order to change it and encrypt with you own key, create the file ~/.ansible_vault in the project root directory and put your key. Use the following command to encrypt the certificate PEM file:
+
+    $ ansible-vault encrypt --vault-password-file=.ansible_vault mycertificate.pem --output=roles/haproxy/files/dschallenge.pem.vault
+
+ 4. To change the Graylog password and environment variables, please refer to the official documentation *http://docs.graylog.org/en/stable/pages/installation/docker.html*. Edit the roles/graylog/tasks/graylog.yml accordingly.
+
+ 5. Prometheus does not have password set for convenience. It should not be externally exposed though in the real environment. That can be done by configuring the HAProxy *roles/haproxy/files/haproxy.cfg* and either remove the acl from the frondend section or change the src IP accordingly.
+
+ 6. Run the command:
 
     $ ansible-playbook deploy.yml
 
