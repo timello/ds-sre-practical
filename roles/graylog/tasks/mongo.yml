@@ -35,6 +35,7 @@
 - name: remove the temporary build directory
   file:
     path: '{{ temp_file.path }}'
+    state: absent
 
 - name: Run mongo container
   docker_container:

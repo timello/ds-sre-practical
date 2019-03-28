@@ -6,13 +6,15 @@
     state: directory
     prefix: hadockerbuild-
 
-- name: Copy the Dockerfile and haproxy.cfg to the remote temporary directory
+- name: Copy files to the remote temporary directory
   copy:
     src: '{{ role_path }}/files/{{ item }}'
     dest: '{{ temp_file.path }}'
   loop:
     - Dockerfile
     - haproxy.cfg
+    - docker-entrypoint.sh
+    - rsyslog.conf
 
 - name: Copy the encrypted certificate file
   copy:
