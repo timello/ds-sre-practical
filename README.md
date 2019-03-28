@@ -4,6 +4,7 @@ The project aims to deploy a Spring Boot application in high availability model.
 All the steps will be done using Infrastructure as Code.
 
 ### Features
+ * Application is built in a Docker container using the Docker builder pattern (https://docs.docker.com/develop/develop-images/multistage-build/)
  * DNS A record for monitoring tool and the application itself (with automation to update the record)
  * Valid SSL certificate
  * GELF drivers enabled on Docker hosts (all containers push log to Graylog)
