@@ -8,6 +8,35 @@ All the steps will be done using Infrastructure as Code.
  * Valid SSL certificate
  * GELF drivers enabled on Docker hosts (all containers push log to Graylog)
 
+### Quick Start
+
+In order to deploy the application and all the stack, you need to have Ansible 2.7.5+ installed and the SSH key
+exchanged with the target server host and the following steps below:
+
+ 1. Edit your local ~/.ssh/config:
+
+        Host dsserver
+          HostName <IP_TARGET_SERVER>
+          User admin
+          IdentityFile ~/.ssh/<SSH_PRIV_KEY>
+
+ 2. Save in the file inventory/group_vars/prod:
+
+        ansible_become: yes
+        ansible_sudo_pass: my_sudo_password
+        docker_registry: localhost:5000
+        docker_internal_network: internal_nw
+
+        postgres_password: my_postgres_password
+        db_name: entries
+        db_user: entries
+        db_password: entries
+        db_port: 5432
+
+ 3. Run the command:
+
+    $ ansible-playbook deploy.yml
+
 ### Notes
 
 #### Server
