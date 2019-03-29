@@ -72,7 +72,7 @@ def parse_haproxy_log(logfile):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='HAproxy and Apache access log parser')
+        description='HAproxy access log parser')
 
     parser.add_argument('logfile', help='Log file input')
 
